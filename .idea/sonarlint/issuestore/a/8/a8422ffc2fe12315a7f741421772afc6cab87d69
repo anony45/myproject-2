@@ -1,0 +1,45 @@
+
+o	java:S115("ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ö³µ
+k	java:S116%"VRename this field "Description" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÒÃ°
+p
+java:S1845%"ZRename field "Description" to prevent any misunderstanding/clash with field "description".(ÒÃ°
+D
+java:S1659$")Declare "description" on a separate line.(×Şë«ùÿÿÿÿ
+b
+java:S1659%"LDeclare "saveCurrentDate" and all following declarations on a separate line.(ÒÃ°
+8
+java:S1659'""Declare "next" on a separate line.(íË¡±
+I
+java:S1659*".Declare "downloadImageUrl" on a separate line.(æèô•ıÿÿÿÿ
+k
+java:S1450'"URemove the "upload" field and declare it as a local variable in the relevant methods.(íË¡±
+Q
+java:S1874-"6Remove this use of "ProgressDialog"; it is deprecated.(ºú±×ÿÿÿÿÿ
+L
+java:S1874="6Remove this use of "ProgressDialog"; it is deprecated.(‹·ÓŞ
+S
+java:S1874R">Remove this use of "startActivityForResult"; it is deprecated.(›Ïâf
+_
+java:S1874V"JDon't override a deprecated method or explicitly mark it as "@Deprecated".(¹Î¾
+h	java:S100o"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(è¼’ùÿÿÿÿ
+M
+java:S1874q"2Remove this use of "setMessage"; it is deprecated.( Üèøşÿÿÿÿ
+R
+java:S1854‹";Remove this useless assignment to local variable "uriTask".(­¢©ú
+C
+java:S1481‹",Remove this unused "uriTask" local variable.(­¢©ú
+>
+java:S1068'"(Remove this unused "next" private field.(íË¡±
+>
+java:S1604?"(Make this anonymous inner class a lambda(®“¾¸
+C
+java:S1604F"(Make this anonymous inner class a lambda(’æ‡‘ùÿÿÿÿ
+?
+java:S1604€"(Make this anonymous inner class a lambda(ÎŸÜÜ
+D
+java:S1604•"(Make this anonymous inner class a lambda(ÆÀúÜşÿÿÿÿ
+>
+java:S1604‡"(Make this anonymous inner class a lambda(‹Ô”H
+D
+java:S1604«"(Make this anonymous inner class a lambda(àØµøÿÿÿÿ
+g	java:S101""MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(Ã‰äùÿÿÿÿ

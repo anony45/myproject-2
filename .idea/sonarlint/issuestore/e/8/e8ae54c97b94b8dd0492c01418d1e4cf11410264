@@ -1,0 +1,35 @@
+
+o	java:S115,"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ö³µ
+s	java:S116'"YRename this field "select_profile" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ä¨›ùÿÿÿÿ
+Y
+java:S1659&"DDeclare "address" and all following declarations on a separate line.(ÅâüO
+a
+java:S1659+"FDeclare "randomkey" and all following declarations on a separate line.(½ŸŠ¡ýÿÿÿÿ
+L
+java:S1874*"6Remove this use of "ProgressDialog"; it is deprecated.(ÆŸöá
+Q
+java:S1874>"6Remove this use of "ProgressDialog"; it is deprecated.(”´ƒ¿ýÿÿÿÿ
+S
+java:S1874U">Remove this use of "startActivityForResult"; it is deprecated.(›Ïâf
+_
+java:S1874Y"JDon't override a deprecated method or explicitly mark it as "@Deprecated".(¹Î¾
+h	java:S100v"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(è¼’ùÿÿÿÿ
+T
+java:S1874x"2Remove this use of "setMessage"; it is deprecated.(ÄÂ›×ýÿÿÿÿ8³áÈÒõ/
+R
+java:S1854’";Remove this useless assignment to local variable "uriTask".(­¢©ú
+C
+java:S1481’",Remove this unused "uriTask" local variable.(­¢©ú
+C
+java:S1604C"(Make this anonymous inner class a lambda(™­¶Ëÿÿÿÿÿ
+J
+java:S1604I"(Make this anonymous inner class a lambda(’æ‡‘ùÿÿÿÿ8˜³«Óõ/
+?
+java:S1604‡"(Make this anonymous inner class a lambda(ÎŸÜÜ
+D
+java:S1604œ"(Make this anonymous inner class a lambda(ÆÀúÜþÿÿÿÿ
+>
+java:S1604Ž"(Make this anonymous inner class a lambda(‹Ô”H
+K
+java:S1604³"(Make this anonymous inner class a lambda(Àõ˜’þÿÿÿÿ8ƒ´…Óõ/
+b	java:S101$"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ˆÿ¤“
