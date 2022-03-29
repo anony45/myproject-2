@@ -13,6 +13,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyGroceries">
         <activity
+            android:name=".StoreTwo"
+            android:exported="false" />
+        <activity
+            android:name=".AdminCategories"
+            android:exported="false" />
+        <activity
+            android:name=".trial"
+            android:exported="false" />
+        <activity
+            android:name=".Home"
+            android:exported="false" />
+        <activity
+            android:name=".editPage"
+            android:exported="false" />
+        <activity
+            android:name=".AdminViewOrders"
+            android:exported="false" />
+        <activity
+            android:name=".adminEditItems"
+            android:exported="false" />
+        <activity
             android:name=".AdminDashboard"
             android:exported="false" />
         <activity

@@ -52,7 +52,6 @@ public class adminLogin extends AppCompatActivity {
             }
         });
 
-
     }
     private void LoginUser(){
         String email=adminEmail.getText().toString();

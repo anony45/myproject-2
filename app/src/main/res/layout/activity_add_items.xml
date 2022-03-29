@@ -6,85 +6,109 @@
     android:layout_height="match_parent"
     tools:context=".addItems">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+
         <TextView
             android:id="@+id/textView15"
             android:layout_width="253dp"
             android:layout_height="27dp"
-            android:layout_marginStart="73dp"
-            android:layout_marginTop="45dp"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="48dp"
             android:text="Enter Product Details"
             android:textAlignment="center"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/selectItemImage"
-            android:layout_width="159dp"
-            android:layout_height="187dp"
-            android:layout_marginStart="131dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="152dp"
-            android:layout_marginBottom="46dp"
-            android:src="@drawable/camera" />
+            android:id="@+id/edit_image"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="83dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/camera"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
         <EditText
-            android:id="@+id/itemName"
+            android:id="@+id/edit_name"
             android:layout_width="253dp"
             android:layout_height="54dp"
-            android:layout_marginStart="88dp"
-            android:layout_marginTop="46dp"
-            android:layout_marginEnd="114dp"
-            android:layout_marginBottom="38dp"
+            android:layout_marginStart="55dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="118dp"
             android:background="@drawable/edit_textbg"
             android:ems="10"
             android:hint="name of product"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_image" />
 
         <EditText
-            android:id="@+id/itemDescription"
+            android:id="@+id/edit_description"
             android:layout_width="259dp"
             android:layout_height="48dp"
-            android:layout_marginStart="88dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="116dp"
-            android:layout_marginBottom="23dp"
+            android:layout_marginStart="55dp"
+            android:layout_marginTop="47dp"
+            android:layout_marginEnd="110dp"
             android:background="@drawable/edit_textbg"
             android:ems="10"
             android:gravity="start|top"
             android:hint="description of product"
-            android:inputType="textMultiLine" />
-
+            android:inputType="textMultiLine"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_name" />
 
         <EditText
-            android:id="@+id/itemPrice"
+            android:id="@+id/edit_price"
             android:layout_width="256dp"
             android:layout_height="53dp"
-            android:layout_marginStart="88dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="114dp"
-            android:layout_marginBottom="53dp"
+            android:layout_marginStart="55dp"
+            android:layout_marginTop="45dp"
+            android:layout_marginEnd="110dp"
             android:background="@drawable/edit_textbg"
             android:ems="10"
             android:hint="price of product"
-            android:inputType="textPersonName" />
-
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_description" />
 
         <Button
             android:id="@+id/submitButton"
-            android:layout_width="212dp"
+            android:layout_width="276dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="27dp"
+            android:layout_marginEnd="93dp"
+            android:background="@drawable/button_bg"
+            android:text="Submit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.636"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+        <EditText
+            android:id="@+id/textView4"
+            android:layout_width="264dp"
             android:layout_height="54dp"
-            android:layout_marginStart="85dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="114dp"
-            android:layout_marginBottom="211dp"
-            android:text="Submit" />
+            android:layout_marginStart="55dp"
+            android:layout_marginTop="39dp"
+            android:layout_marginEnd="92dp"
+            android:background="@drawable/edit_textbg"
+            android:hint="category"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_price" />
 
 
-
-
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

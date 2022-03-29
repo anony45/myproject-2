@@ -3,11 +3,14 @@ package com.example.mygroceries;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,8 +34,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 public class cartPage extends Nav_base {
@@ -42,12 +49,14 @@ public class cartPage extends Nav_base {
     List<cart> mylist;
     DatabaseReference db;
     Button proceed;
-    TextView total_amount,message;
-    int total_price=0;
+    TextView total_amount,message,ffinal,total,fee;
+    int overalprice=0;
+    int myttl=0;
     cartAdapter cartAdapter;
-    private Button submitorder;
-    private ImageView productimg;
-    private TextView descriptionofitem,priceofitem,nameofitem;
+    Button submitorder;
+    ImageView productimg;
+    TextView descriptionofitem,priceofitem,nameofitem;
+    String productid="",mytotal;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,96 +65,109 @@ public class cartPage extends Nav_base {
         allocatetitle("Your Cart");
 
         //declare the contents
+        fee=findViewById(R.id.myfee);
+        ffinal=findViewById(R.id.ftotal);
+        total=findViewById(R.id.final_total);
         recyclerView=findViewById(R.id.cart_recycler);
         recyclerView.setHasFixedSize(true);
         layoutManager=new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        db=FirebaseDatabase.getInstance().getReference("Cart List");
-        mylist=new ArrayList<>();
-        cartAdapter=new cartAdapter(cartPage.this,mylist);
-        recyclerView.setAdapter(cartAdapter);
-        //find view
-
-        //from store activity
-        String description=getIntent().getStringExtra("description");
-        String img=getIntent().getStringExtra("image");
-        String pricee=getIntent().getStringExtra("price");
-        String namee=getIntent().getStringExtra("name");
-
-
-
         proceed=findViewById(R.id.submitbtn);
-        total_amount=findViewById(R.id.total_price);
-        message=findViewById(R.id.msg1);
+
+        //get image
+        String img=getIntent().getStringExtra("image");
 
         proceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                total_amount.setText("Total price = Ksh"+String.valueOf(total_price));
-                Intent intent= new Intent(cartPage.this,ongoingOrders.class);
-                intent.putExtra("Total price",String.valueOf(total_price));
+                Toast.makeText(cartPage.this, "Order placed successfully", Toast.LENGTH_SHORT).show();
+                Intent intent= new Intent(cartPage.this,deliveryDetails.class);
+                intent.putExtra("Total price",String.valueOf(total));
+
                 startActivity(intent);
                 finish();
             }
         });
-        eventchange();
+        debate();
     }
+    public void debate(){
+        final DatabaseReference reference=FirebaseDatabase.getInstance().getReference("Cart List").child("User View");
+        FirebaseRecyclerOptions<cart>options =new FirebaseRecyclerOptions.Builder<cart>().setQuery(reference,cart.class).build();
 
+        FirebaseRecyclerAdapter<cart,cartAdapter> adapter= new FirebaseRecyclerAdapter<cart, cartAdapter>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull cartAdapter holder, int position, @NonNull cart model) {
+                holder.name.setText(model.getName());
+                holder.total_pricee.setText(model.getPrice());
+                holder.quantity.setText(model.getQuantity());
+                //calculating the total
+                try{
+
+                    int totalAmount= (Integer.valueOf(model.getPrice()))*(Integer.valueOf(model.getQuantity()));
+                    overalprice=overalprice+totalAmount;
+                    myttl=overalprice+100;
+                    ffinal.setText("Total price = Ksh."+String.valueOf(overalprice));
+                    total.setText("sub total= Ksh."+String.valueOf(myttl));
+
+                } catch(NumberFormatException e){ // handle your exception
+                }
+
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        CharSequence options[] = new CharSequence[]
+                                {
+                                        "Edit",
+                                        "Remove"
+                                };
+                        AlertDialog.Builder builder = new AlertDialog.Builder(cartPage.this);
+                        builder.setTitle("Cart Options: ");
+                        builder.setItems(options, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                if (which==0){
+                                    Intent intent=new Intent(cartPage.this,itemsDescriptions.class);
+                                    intent.putExtra("name",model.getName());
+                                    startActivity(intent);
+                                }
+                                if (which==1){
+                                    reference.child("user view").child("products").child(model.getName()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if(task.isSuccessful()){
+                                                Toast.makeText(cartPage.this, "Item deleted successfully", Toast.LENGTH_SHORT).show();
+                                                Intent intent= new Intent(cartPage.this,storeOne.class);
+                                                startActivity(intent);
+                                            }
+                                        }
+                                    });
+                                }
+                            }
+                        });
+                        builder.show();
+                    }
+                });
+
+            }
+
+
+            @NonNull
+            @Override
+            public cartAdapter onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.cart_items,parent,false);
+                cartAdapter adapter1 = new cartAdapter(view);
+                return adapter1;
+            }
+        };
+        recyclerView.setAdapter(adapter);
+        adapter.startListening();
+    }
     @Override
     protected void onStart() {
         super.onStart();
 
+
     }
-    private void eventchange() {
-        db.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot :snapshot.getChildren()){
-                    cart cartdomain= dataSnapshot.getValue(cart.class);
-                    mylist.add(cartdomain);
-                }
-                cartAdapter.notifyDataSetChanged();
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
-    }
-    private void CheckOrderState(){
-        DatabaseReference ordersRef;
-        ordersRef = FirebaseDatabase.getInstance().getReference().child("Orders");
-        ordersRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-                    String shippingstate = snapshot.child("state").getValue().toString();
-                    String username= snapshot.child("name").getValue().toString();
-                    if (shippingstate.equals("shipped")){
-                        total_amount.setText("Order is shipped successfully");
-                        recyclerView.setVisibility(View.GONE);
-                        message.setVisibility(View.VISIBLE);
-                        message.setText("Congratulations, Your Final order has been shipped successfully. Soon you will received your order");
-                        proceed.setVisibility(View.GONE);
-                        Toast.makeText(cartPage.this, "You can purchase more products, Once you received your first order", Toast.LENGTH_SHORT).show();
-
-                    }
-                    else if (shippingstate.equals("Not Shipped")){
-                        total_amount.setText("Shipping State = Not Shipped");
-                        recyclerView.setVisibility(View.GONE);
-                        message.setVisibility(View.VISIBLE);
-
-                        proceed.setVisibility(View.GONE);
-                        Toast.makeText(cartPage.this,"You can purchase more products, Once you received your first order",Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
 }

@@ -51,9 +51,10 @@ public class addItems extends AppCompatActivity {
         itemRef= FirebaseDatabase.getInstance().getReference().child("Store Items");
 
         submit=findViewById(R.id.submitButton);
-        selectItemImage=findViewById(R.id.selectItemImage);
-        name=findViewById(R.id.itemName);
-        description=findViewById(R.id.itemDescription);
+        selectItemImage=findViewById(R.id.edit_image);
+        name=findViewById(R.id.edit_name);
+        price=findViewById(R.id.edit_price);
+        description=findViewById(R.id.edit_description);
         loadingBar=new ProgressDialog(this);
 
         submit.setOnClickListener(new View.OnClickListener() {
@@ -90,6 +91,8 @@ public class addItems extends AppCompatActivity {
     private void validateItemData(){
         Description=description.getText().toString();
         itemName=name.getText().toString();
+        Price=price.getText().toString();
+
 
         if (uri==null){
             Toast.makeText(this, "product image is needed", Toast.LENGTH_SHORT).show();
@@ -97,8 +100,11 @@ public class addItems extends AppCompatActivity {
         else if (TextUtils.isEmpty(Description)){
             Toast.makeText(this, "please write the product description", Toast.LENGTH_SHORT).show();
         }
+        else if (TextUtils.isEmpty(Price)){
+            Toast.makeText(this, "please write price of item", Toast.LENGTH_SHORT).show();
+        }
         else if (TextUtils.isEmpty(itemName)){
-            Toast.makeText(this, "please write the store name", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "please write the item name", Toast.LENGTH_SHORT).show();
         }
         else {
             StoretheInformation();
@@ -165,12 +171,13 @@ public class addItems extends AppCompatActivity {
         itemmap.put("description",Description);
         itemmap.put("image",downloadImageUrl);
         itemmap.put("name",itemName);
+        itemmap.put("price",Price);
 
         itemRef.child(itemRandomKey).updateChildren(itemmap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){
-                    Intent intent = new Intent(addItems.this, vendorLogin.class);
+                    Intent intent = new Intent(addItems.this,vendorLogin.class);
                     startActivity(intent);
                     loadingBar.dismiss();
                     Toast.makeText(addItems.this, "product is added successfully", Toast.LENGTH_SHORT).show();

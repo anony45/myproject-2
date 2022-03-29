@@ -64,16 +64,18 @@
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"/>
+
             <EditText
+                android:id="@+id/inputMobile"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:id="@+id/inputMobile"
-                android:hint="0123456789"
                 android:background="@null"
-                android:textStyle="bold"
-                android:textColor="@color/black"
+                android:hint="0123456789"
+                android:importantForAutofill="no"
                 android:inputType="number"
-                android:importantForAutofill="no" />
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                tools:ignore="TouchTargetSizeCheck" />
 
         </LinearLayout>
         <FrameLayout
@@ -99,6 +101,13 @@
 
         </FrameLayout>
 
+        <TextView
+            android:id="@+id/adminCreatePass"
+            android:layout_width="121dp"
+            android:layout_height="42dp"
+            android:text="Admin Login"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
 
     </LinearLayout>

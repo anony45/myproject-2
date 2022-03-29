@@ -73,6 +73,7 @@ dependencies {
     //navigation dependency
     implementation 'androidx.navigation:navigation-fragment:2.4.1'
     implementation 'androidx.navigation:navigation-ui:2.4.1'
+    implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
 
 
 

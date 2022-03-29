@@ -38,15 +38,13 @@
                     android:id="@+id/total_price"
                     android:layout_width="177dp"
                     android:layout_height="41dp"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="40dp"
                     android:layout_marginTop="20dp"
-                    android:layout_marginEnd="223dp"
                     android:layout_marginBottom="127dp"
                     android:text="Total Price"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -67,12 +65,70 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/total_price" />
 
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="176dp"
+                    android:layout_height="38dp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="14dp"
+                    android:text="Delivery Fee"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/total_price" />
+
+                <TextView
+                    android:id="@+id/ftotal"
+                    android:layout_width="80dp"
+                    android:layout_height="41dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="9dp"
+                    android:text="final total"
+                    android:textAlignment="center"
+                    app:layout_constraintStart_toEndOf="@+id/total_price"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/myfee"
+                    android:layout_width="81dp"
+                    android:layout_height="38dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="12dp"
+                    android:text="70"
+                    android:textAlignment="center"
+                    app:layout_constraintStart_toEndOf="@+id/textView10"
+                    app:layout_constraintTop_toBottomOf="@+id/ftotal" />
+
+                <TextView
+                    android:id="@+id/textView23"
+                    android:layout_width="173dp"
+                    android:layout_height="39dp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Subtotal"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+                <TextView
+                    android:id="@+id/final_total"
+                    android:layout_width="81dp"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="final"
+                    android:textAlignment="center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView23" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <Button
                 android:id="@+id/submitbtn"
                 android:layout_width="315dp"
                 android:layout_height="52dp"
+                android:layout_margin="16dp"
                 android:layout_marginStart="48dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="48dp"

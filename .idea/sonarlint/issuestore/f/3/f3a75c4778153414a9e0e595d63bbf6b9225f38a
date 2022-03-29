@@ -1,0 +1,10 @@
+
+£
+java:S1186+"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ğ¸™áúÿÿÿÿ8öËîáù/
+x	java:S1169"WRename this field "total_pricee" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(³àªÒşÿÿÿÿ8šÌîáù/
+c
+java:S16599"ADeclare "name" and all following declarations on a separate line.(³àªÒşÿÿÿÿ8ÌÌîáù/
+E
+java:S1604)"(Make this anonymous inner class a lambda(Ö¹™º8´Íîáù/
+n	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(æ¤üÚûÿÿÿÿ8¶Íîáù/
+n	java:S1017"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ïØğúúÿÿÿÿ8·Íîáù/

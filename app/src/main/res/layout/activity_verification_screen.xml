@@ -181,6 +181,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_bg"
                 android:text="Continue"
+                android:layout_margin="16dp"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".editPage">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="253dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="48dp"
+            android:text="Enter Product Details"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/edit_product_img"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="83dp"
+            android:layout_marginTop="8dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/camera"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+        <EditText
+            android:id="@+id/edit_product_name"
+            android:layout_width="253dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="65dp"
+            android:layout_marginTop="29dp"
+            android:background="@drawable/edit_textbg"
+            android:ems="10"
+            android:hint="name of product"
+            android:inputType="textPersonName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_product_img" />
+
+        <EditText
+            android:id="@+id/edit_product_description"
+            android:layout_width="259dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="65dp"
+            android:layout_marginTop="45dp"
+            android:background="@drawable/edit_textbg"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="description of product"
+            android:inputType="textMultiLine"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_product_name" />
+
+        <EditText
+            android:id="@+id/edit_product_price"
+            android:layout_width="256dp"
+            android:layout_height="53dp"
+            android:layout_marginStart="63dp"
+            android:layout_marginTop="45dp"
+            android:background="@drawable/edit_textbg"
+            android:ems="10"
+            android:hint="price of product"
+            android:inputType="textPersonName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_product_description" />
+
+        <Button
+            android:id="@+id/update_items"
+            android:layout_width="278dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="65dp"
+            android:layout_marginTop="45dp"
+            android:background="@drawable/button_bg"
+            android:text="Update"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_product_price" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

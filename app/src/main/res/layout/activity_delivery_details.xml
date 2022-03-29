@@ -5,48 +5,109 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".deliveryDetails">
+
     <EditText
-        android:id="@+id/editTextTextPersonName4"
-        android:layout_width="270dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="28dp"
+        android:id="@+id/deliveryName"
+        android:layout_width="291dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="38dp"
         android:background="@drawable/edit_textbg"
         android:ems="10"
         android:hint="name"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/editTextPhone2"
         app:layout_constraintStart_toStartOf="parent"
-         />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout11" />
 
     <EditText
-        android:id="@+id/editTextPhone2"
-        android:layout_width="270dp"
+        android:id="@+id/deliveryPhone"
+        android:layout_width="292dp"
         android:layout_height="60dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="101dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="43dp"
         android:background="@drawable/edit_textbg"
         android:ems="10"
         android:hint="phone number"
         android:inputType="phone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
+        app:layout_constraintTop_toBottomOf="@+id/deliveryName" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName5"
-        android:layout_width="277dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
+        android:id="@+id/deliveryAdress"
+        android:layout_width="298dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginBottom="47dp"
         android:background="@drawable/edit_textbg"
         android:ems="10"
         android:hint="shipping location"
         android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/textView22"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPhone2" />
+        app:layout_constraintTop_toBottomOf="@+id/deliveryPhone" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout11"
+        android:layout_width="0dp"
+        android:layout_height="120dp"
+        android:background="@drawable/background_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="239dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="47dp"
+            android:layout_marginTop="75dp"
+            android:text="Confirm Your Shipping details"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="97dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="47dp"
+        android:text="Prepare Ksh."
+        android:textAlignment="viewEnd"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deliveryAdress" />
+
+    <TextView
+        android:id="@+id/deliveryPrice"
+        android:layout_width="58dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="47dp"
+        android:layout_marginEnd="185dp"
+        android:text="200"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView22"
+        app:layout_constraintTop_toBottomOf="@+id/deliveryAdress" />
+
+    <Button
+        android:id="@+id/deliveryConfirmButton"
+        android:layout_width="289dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="70dp"
+        android:background="@drawable/button_bg"
+        android:text="Confirm"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deliveryPrice" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

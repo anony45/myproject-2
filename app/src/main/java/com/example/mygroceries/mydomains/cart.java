@@ -1,22 +1,26 @@
 package com.example.mygroceries.mydomains;
 
-public class cart {
-    private String pid,name,price,quantity,discount,image;
+import java.io.Serializable;
+
+public class cart implements Serializable {
+    private String pid,name,price,quantity,discount,image,totalprice;
     public cart (){
 
     }
 
-    public cart(String pid, String name, String price, String quantity, String discount) {
+    public cart(String pid, String name, String price, String quantity, String discount,String totalprice) {
         this.pid = pid;
         this.name = name;
         this.price = price;
         this.quantity = quantity;
         this.discount = discount;
+        this.totalprice=totalprice;
     }
 
     public cart(String image) {
         this.image = image;
     }
+
 
     public String getImage() {
         return image;
@@ -64,5 +68,12 @@ public class cart {
 
     public void setDiscount(String discount) {
         this.discount = discount;
+    }
+
+    public String getTotalprice() {
+        return totalprice;
+    }
+    public void setTotalprice(String totalprice) {
+        this.totalprice = totalprice;
     }
 }

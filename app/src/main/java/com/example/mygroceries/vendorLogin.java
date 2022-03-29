@@ -48,7 +48,7 @@ public class vendorLogin extends Nav_base {
         allocatetitle("Home ");
 
         recyclerView=findViewById(R.id.storesReycler);
-        recyclerView.setLayoutManager(new WrapContentLinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
+        recyclerView.setLayoutManager(new WrapContentLinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         db= FirebaseDatabase.getInstance().getReference("stores");
 

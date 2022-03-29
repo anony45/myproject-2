@@ -40,7 +40,7 @@ public class storesAdapter extends FirebaseRecyclerAdapter<storesDomain, storesA
     protected void onBindViewHolder(@NonNull storesViewholder holder, int position, @NonNull storesDomain model) {
 
         holder.name.setText(model.getName());
-        Glide.with(holder.image.getContext()).load(model.getImage()).placeholder(R.drawable.apple).error(R.drawable.ic_launcher_foreground).into(holder.image);
+        Glide.with(holder.image.getContext()).load(model.getImage()).error(R.drawable.noimage).into(holder.image);
 
 
     }

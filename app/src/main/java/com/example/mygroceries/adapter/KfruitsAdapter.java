@@ -40,9 +40,9 @@ public class KfruitsAdapter extends RecyclerView.Adapter<KfruitsAdapter.kfruitVi
     public void onBindViewHolder(@NonNull kfruitViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         holder.name.setText(kfruitDomainList.get(position).getName());
-        holder.description.setText(kfruitDomainList.get(position).getPrice());
+        holder.description.setText(kfruitDomainList.get(position).getDescription());
         holder.price.setText(kfruitDomainList.get(position).getPrice());
-        Glide.with(context).load(kfruitDomainList.get(position).getImage()).error(R.drawable.fruit).into(holder.image);
+        Glide.with(context).load(kfruitDomainList.get(position).getImage()).error(R.drawable.noimage).into(holder.image);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,13 +53,8 @@ public class KfruitsAdapter extends RecyclerView.Adapter<KfruitsAdapter.kfruitVi
                 intent.putExtra("name",kfruitDomainList.get(position).getName());
 
                 view.getContext().startActivity(intent);
-
             }
         });
-
-
-
-
     }
 
     @Override
@@ -70,7 +65,7 @@ public class KfruitsAdapter extends RecyclerView.Adapter<KfruitsAdapter.kfruitVi
 
     public final class kfruitViewHolder extends RecyclerView.ViewHolder{
         //declaration for cart
-        ImageView image;
+        ImageView image,delivery_fee;
         TextView name,description,price;
 
 
@@ -81,7 +76,7 @@ public class KfruitsAdapter extends RecyclerView.Adapter<KfruitsAdapter.kfruitVi
             image=itemView.findViewById(R.id.cart_product_image);
             name=itemView.findViewById(R.id.cart_product_name);
             description=itemView.findViewById(R.id.quantity);
-            price=itemView.findViewById(R.id.cart_product_price);
+            price=itemView.findViewById(R.id.item_price);
 
         }
     }

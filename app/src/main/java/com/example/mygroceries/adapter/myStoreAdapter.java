@@ -36,7 +36,7 @@ public class myStoreAdapter extends RecyclerView.Adapter<myStoreAdapter.storeVie
         holder.price.setText(list.get(position).getItemprice());
         holder.price.setText(list.get(position).getItemprice());
 
-        Glide.with(holder.image.getContext()).load(list.get(position).getItemimage()).error(R.drawable.ic_launcher_foreground).into(holder.image);
+        Glide.with(holder.image.getContext()).load(list.get(position).getItemimage()).error(R.drawable.noimage).into(holder.image);
 
     }
 

@@ -31,7 +31,7 @@ import java.util.HashMap;
 public class itemsDescriptions extends AppCompatActivity {
     private Button addtocart;
     private ImageView productimg;
-    private TextView descriptionofitem,priceofitem,nameofitem;
+    private TextView descriptionofitem,priceofitem,nameofitem,fee;
     private String productid="",state="normal";
     LinearLayout inc;
     TextView t1,t2,t3;
@@ -64,6 +64,7 @@ public class itemsDescriptions extends AppCompatActivity {
         addtocart=findViewById(R.id.add_to_cart_button);
         productimg= findViewById(R.id.product_image);
         descriptionofitem =findViewById(R.id.description_of_product);
+        fee=findViewById(R.id.fee);
 
 
         //get data from previous activity
@@ -80,13 +81,9 @@ public class itemsDescriptions extends AppCompatActivity {
         addtocart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(state.equals("order placed")|| state.equals("order shipped")){
 
-                    Toast.makeText(itemsDescriptions.this, "You can add purchase more product,once your is shipped", Toast.LENGTH_SHORT).show();
-                }
-                else{
+
                     addingToCartList();
-                }
             }
         });
 
@@ -114,26 +111,33 @@ public class itemsDescriptions extends AppCompatActivity {
         CheckOrderState();
     }
    private void addingToCartList(){
-        String saveCurrentTime,saveCurrentDate;
+        String saveCurrentTime,saveCurrentDate,itemRandomKey;
        Calendar calForDate = Calendar.getInstance();
-       SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd. yyy");
+
+       SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
        saveCurrentDate = currentDate.format(calForDate.getTime());
+
        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
-       saveCurrentTime = currentDate.format(calForDate.getTime());
-       final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Cart List");
+       saveCurrentTime = currentTime.format(calForDate.getTime());
+
+       itemRandomKey = saveCurrentDate + saveCurrentTime;
+
+
+       final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference("Cart List");
        final HashMap<String, Object> cartMap = new HashMap<>();
        cartMap.put("pid",productid);
+       cartMap.put("delivery fee",fee.getText().toString());
        cartMap.put("name",nameofitem.getText().toString());
        cartMap.put("quantity",t2.getText().toString());
        cartMap.put("price" ,priceofitem.getText().toString());
        cartMap.put("date",saveCurrentDate);
        cartMap.put("time",saveCurrentTime);
 
-       cartListRef.child("User View").child("items").child(saveCurrentTime).updateChildren(cartMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+       cartListRef.child("User View").child(itemRandomKey).updateChildren(cartMap).addOnCompleteListener(new OnCompleteListener<Void>() {
            @Override
            public void onComplete(@NonNull Task<Void> task) {
                if(task.isSuccessful()){
-                   cartListRef.child("Admin View").child("items").child(productid).updateChildren(cartMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                   cartListRef.child("Admin View").child(itemRandomKey).updateChildren(cartMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                        @Override
                        public void onComplete(@NonNull Task<Void> task) {
                            if (task.isSuccessful()){

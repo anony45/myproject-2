@@ -1,0 +1,7 @@
+
+N
+java:S1874,"3Remove this use of "getInstance"; it is deprecated.(Ú©ã¬ýÿÿÿÿ
+T
+java:S1874,"9Remove this use of "verifyPhoneNumber"; it is deprecated.(Ú©ã¬ýÿÿÿÿ
+=
+java:S1604""(Make this anonymous inner class a lambda(‚´æY

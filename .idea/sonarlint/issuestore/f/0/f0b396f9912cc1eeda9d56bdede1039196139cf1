@@ -1,0 +1,48 @@
+
+o	java:S115&"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ö³µ
+p	java:S116#"VRename this field "Description" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(üÊ“Èşÿÿÿÿ
+j	java:S116#"PRename this field "Price" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(üÊ“Èşÿÿÿÿ
+u
+java:S1845#"ZRename field "Description" to prevent any misunderstanding/clash with field "description".(üÊ“Èşÿÿÿÿ
+i
+java:S1845#"NRename field "Price" to prevent any misunderstanding/clash with field "price".(üÊ“Èşÿÿÿÿ
+c
+java:S1659""HDeclare "description" and all following declarations on a separate line.(°Ïæ÷ûÿÿÿÿ
+g
+java:S1659#"LDeclare "saveCurrentDate" and all following declarations on a separate line.(üÊ“Èşÿÿÿÿ
+I
+java:S1659(".Declare "downloadImageUrl" on a separate line.(øããùÿÿÿÿ
+j
+java:S1450%"URemove the "submit" field and declare it as a local variable in the relevant methods.(Ä‘Æ
+Q
+java:S1874+"6Remove this use of "ProgressDialog"; it is deprecated.(ºú±×ÿÿÿÿÿ
+L
+java:S18749"6Remove this use of "ProgressDialog"; it is deprecated.(‹·ÓŞ
+S
+java:S1874O">Remove this use of "startActivityForResult"; it is deprecated.(›Ïâf
+_
+java:S1874S"JDon't override a deprecated method or explicitly mark it as "@Deprecated".(¹Î¾
+h	java:S100m"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(è¼’ùÿÿÿÿ
+H
+java:S1874o"2Remove this use of "setMessage"; it is deprecated.(í•”§
+R
+java:S1854‰";Remove this useless assignment to local variable "uriTask".(­¢©ú
+C
+java:S1481‰",Remove this unused "uriTask" local variable.(­¢©ú
+D
+java:S1068"")Remove this unused "price" private field.(°Ïæ÷ûÿÿÿÿ
+D
+java:S1068#")Remove this unused "Price" private field.(üÊ“Èşÿÿÿÿ
+>
+java:S1604;"(Make this anonymous inner class a lambda(±Ä­”
+>
+java:S1604C"(Make this anonymous inner class a lambda(Á¥Æğ
+>
+java:S1604~"(Make this anonymous inner class a lambda(ÎŸÜÜ
+D
+java:S1604“"(Make this anonymous inner class a lambda(ÆÀúÜşÿÿÿÿ
+>
+java:S1604…"(Make this anonymous inner class a lambda(‹Ô”H
+D
+java:S1604©"(Make this anonymous inner class a lambda(Áâú›ûÿÿÿÿ
+b	java:S101!"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(‹èÎš

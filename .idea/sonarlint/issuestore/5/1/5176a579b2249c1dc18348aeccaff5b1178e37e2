@@ -1,0 +1,6 @@
+
+S
+java:S1874"6Remove this use of "ProgressDialog"; it is deprecated.(рЁэЇ8§¬общ/
+Ю
+java:S1186:"АAdd a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(‘∞§¶8а√общ/
+n	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(цЂ§Аъ€€€€8Еƒобщ/
