@@ -54,7 +54,7 @@
 
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/searchstore"
             android:layout_width="259dp"
             android:layout_height="49dp"
             android:layout_marginStart="72dp"

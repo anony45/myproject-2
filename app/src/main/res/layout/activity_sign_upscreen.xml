@@ -103,10 +103,10 @@
 
         <TextView
             android:id="@+id/adminCreatePass"
-            android:layout_width="121dp"
-            android:layout_height="42dp"
-            android:text="Admin Login"
-            android:textColor="@color/black"
+            android:layout_width="170dp"
+            android:layout_height="38dp"
+            android:text="You are an admin?"
+            android:textColor="@color/blue"
             android:textSize="16sp" />
 
 

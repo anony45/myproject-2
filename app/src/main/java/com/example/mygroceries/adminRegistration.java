@@ -40,15 +40,17 @@ public class adminRegistration extends AppCompatActivity {
         link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoginUser();
+                Intent intent=new Intent(adminRegistration.this,adminLogin.class);
+                startActivity(intent);
+
 
             }
         });
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(adminRegistration.this,SignUpscreen.class);
-                startActivity(intent);
+                LoginUser();
+
             }
         });
 
@@ -58,10 +60,7 @@ public class adminRegistration extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if (auth.getCurrentUser()!null){
-            startActivity(new Intent((adminRegistration.this,adminLogin.class)));
-            finish();
-        }
+
     }
 
 
@@ -72,10 +71,10 @@ public class adminRegistration extends AppCompatActivity {
         if(TextUtils.isEmpty(Email)){
             Toast.makeText(this, "please enter your email", Toast.LENGTH_SHORT).show();
         }
-        else if(TextUtils.isEmpty(Password||Password.length()<8)){
+        else if(TextUtils.isEmpty(Password)){
             Toast.makeText(this, "please enter your password of about 8 characters", Toast.LENGTH_SHORT).show();
         }
-        else if(TextUtils.isEmpty(confirmpassword||!confirmpassword.equals(Password))){
+        else if(TextUtils.isEmpty(confirmpassword)){
             Toast.makeText(this, "please enter passwords that match", Toast.LENGTH_SHORT).show();
         }
         else {
@@ -88,20 +87,18 @@ public class adminRegistration extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
                         Toast.makeText(adminRegistration.this, "Account created successfully", Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
                         Intent intent=new Intent(adminRegistration.this,AdminDashboard.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
                     }
 
-                    elif (!task.isSuccessful()){
-                        Toast.makeText(adminRegistration.this, "An error ocurred ", Toast.LENGTH_SHORT).show();
-                    }
-                    else {
-                        startActivity(new Intent(adminRegistration.this,adminLogin.class));
-                        finish();
+                    if (!task.isSuccessful()){
+                        Toast.makeText(adminRegistration.this, "An error ocurred "+task.getException().toString(), Toast.LENGTH_SHORT).show();
+
                     }
                 }
-            })
+            });
 
         }
 

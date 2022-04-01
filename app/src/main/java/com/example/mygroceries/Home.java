@@ -9,8 +9,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.SearchView;
 
 import com.example.mygroceries.adapter.KfruitsAdapter;
 import com.example.mygroceries.adapter.homeAdapter;
@@ -30,6 +36,7 @@ import java.util.List;
 public class Home extends Nav_base {
 	RecyclerView recyclerView;
 	homeAdapter adapter;
+	EditText search;
 	DatabaseReference db;
 	ActivityHomeBinding homeBinding;
 	List<homeDomain> mylist;
@@ -48,9 +55,29 @@ public class Home extends Nav_base {
 		recyclerView.setLayoutManager(layoutManager);
 		db= FirebaseDatabase.getInstance().getReference("stores");
 		mylist=new ArrayList<>();
-		adapter=new homeAdapter(Home.this,mylist);
-		recyclerView.setAdapter(adapter);
 		eventchange();
+		search=findViewById(R.id.searchstore);
+		search.addTextChangedListener(new TextWatcher() {
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) { }
+			@Override
+			public void afterTextChanged(Editable s) {
+				filter(s.toString());
+			}
+		});
+	}
+	private void filter(String txt){
+		ArrayList<homeDomain> filtered=new ArrayList<>();
+
+		for (homeDomain domain:mylist ){
+			if(domain.getName().toLowerCase().contains(txt.toLowerCase())){
+				filtered.add(domain);
+			}
+		}
+		adapter.filterlist(filtered);
+
 
 	}
 
@@ -70,6 +97,9 @@ public class Home extends Nav_base {
 
 			}
 		});
+		adapter=new homeAdapter(Home.this,mylist);
+		recyclerView.setAdapter(adapter);
+		adapter.notifyDataSetChanged();
 	}
 
 }

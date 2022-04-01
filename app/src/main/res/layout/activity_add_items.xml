@@ -9,7 +9,11 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <TextView
@@ -30,8 +34,8 @@
             android:layout_height="150dp"
             android:layout_marginStart="83dp"
             android:layout_marginTop="8dp"
-            android:src="@drawable/camera"
             android:scaleType="centerCrop"
+            android:src="@drawable/camera"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
@@ -39,7 +43,7 @@
             android:id="@+id/edit_name"
             android:layout_width="253dp"
             android:layout_height="54dp"
-            android:layout_marginStart="55dp"
+            android:layout_marginStart="60dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="118dp"
             android:background="@drawable/edit_textbg"
@@ -52,9 +56,9 @@
 
         <EditText
             android:id="@+id/edit_description"
-            android:layout_width="259dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="55dp"
+            android:layout_width="253dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="60dp"
             android:layout_marginTop="47dp"
             android:layout_marginEnd="110dp"
             android:background="@drawable/edit_textbg"
@@ -68,9 +72,9 @@
 
         <EditText
             android:id="@+id/edit_price"
-            android:layout_width="256dp"
-            android:layout_height="53dp"
-            android:layout_marginStart="55dp"
+            android:layout_width="253dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="60dp"
             android:layout_marginTop="45dp"
             android:layout_marginEnd="110dp"
             android:background="@drawable/edit_textbg"
@@ -93,15 +97,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.636"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+            app:layout_constraintTop_toBottomOf="@+id/addcate" />
 
         <EditText
-            android:id="@+id/textView4"
-            android:layout_width="264dp"
+            android:id="@+id/addcate"
+            android:layout_width="253dp"
             android:layout_height="54dp"
-            android:layout_marginStart="55dp"
-            android:layout_marginTop="39dp"
-            android:layout_marginEnd="92dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="98dp"
             android:background="@drawable/edit_textbg"
             android:hint="category"
             app:layout_constraintEnd_toEndOf="parent"

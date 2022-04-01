@@ -3,9 +3,10 @@ package com.example.mygroceries.mydomains;
 import java.io.Serializable;
 
 public class homeDomain implements Serializable {
-	String name;
-	String image;
+	public String name;
+	public String image;
 	homeDomain(){}
+
 
 	public homeDomain(String name, String image) {
 		this.name = name;

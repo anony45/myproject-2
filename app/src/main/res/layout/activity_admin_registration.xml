@@ -63,6 +63,7 @@
             android:layout_marginTop="44dp"
             android:background="@drawable/edit_textbg"
             android:hint="password"
+            android:inputType="textPassword"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/AdminRegisterEmail" />
@@ -97,7 +98,7 @@
             android:layout_height="27dp"
             android:layout_marginStart="68dp"
             android:layout_marginTop="13dp"
-            android:text="Sign In as a User?"
+            android:text="Already have an account?"
             android:textAlignment="center"
             android:textColor="@color/blue"
             app:layout_constraintStart_toStartOf="parent"

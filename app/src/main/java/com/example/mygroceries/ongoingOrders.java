@@ -19,8 +19,6 @@ public class ongoingOrders extends Nav_base {
         ongoingOrdersBinding=ActivityOngoingOrdersBinding.inflate(getLayoutInflater());
         setContentView(ongoingOrdersBinding.getRoot());
         allocatetitle("Ongoing Orders");
-
-        ttl=findViewById(R.id.ttl);
         String total =getIntent().getStringExtra("totalAmount");
         ttl.setText(total);
 

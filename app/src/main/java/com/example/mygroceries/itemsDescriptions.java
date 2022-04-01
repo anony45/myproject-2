@@ -17,6 +17,8 @@ import com.bumptech.glide.Glide;
 import com.example.mygroceries.mydomains.items;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,7 +34,9 @@ public class itemsDescriptions extends AppCompatActivity {
     private Button addtocart;
     private ImageView productimg;
     private TextView descriptionofitem,priceofitem,nameofitem,fee;
-    private String productid="",state="normal";
+    private String productid="",state="normal", myimage="";
+    FirebaseUser user;
+    String userid;
     LinearLayout inc;
     TextView t1,t2,t3;
 
@@ -65,6 +69,8 @@ public class itemsDescriptions extends AppCompatActivity {
         productimg= findViewById(R.id.product_image);
         descriptionofitem =findViewById(R.id.description_of_product);
         fee=findViewById(R.id.fee);
+        user= FirebaseAuth.getInstance().getCurrentUser();
+        userid=user.getUid();
 
 
         //get data from previous activity
@@ -73,10 +79,13 @@ public class itemsDescriptions extends AppCompatActivity {
         String pricee=getIntent().getStringExtra("price");
         String namee=getIntent().getStringExtra("name");
 
+        myimage=img;
+
         priceofitem.setText(pricee);
         nameofitem.setText(namee);
         descriptionofitem.setText(description);
         Picasso.get().load(img).into(productimg);
+
 
         addtocart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,28 +130,31 @@ public class itemsDescriptions extends AppCompatActivity {
        saveCurrentTime = currentTime.format(calForDate.getTime());
 
        itemRandomKey = saveCurrentDate + saveCurrentTime;
-
+       String name=nameofitem.getText().toString();
 
        final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference("Cart List");
        final HashMap<String, Object> cartMap = new HashMap<>();
        cartMap.put("pid",productid);
        cartMap.put("delivery fee",fee.getText().toString());
-       cartMap.put("name",nameofitem.getText().toString());
+       cartMap.put("name",name);
        cartMap.put("quantity",t2.getText().toString());
        cartMap.put("price" ,priceofitem.getText().toString());
        cartMap.put("date",saveCurrentDate);
        cartMap.put("time",saveCurrentTime);
+       cartMap.put("image",myimage);
+       cartMap.put("userid",userid);
 
-       cartListRef.child("User View").child(itemRandomKey).updateChildren(cartMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+       cartListRef.child("User View").child(name).updateChildren(cartMap).addOnCompleteListener(new OnCompleteListener<Void>() {
            @Override
            public void onComplete(@NonNull Task<Void> task) {
                if(task.isSuccessful()){
-                   cartListRef.child("Admin View").child(itemRandomKey).updateChildren(cartMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                   cartListRef.child("Admin View").child(name).updateChildren(cartMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                        @Override
                        public void onComplete(@NonNull Task<Void> task) {
                            if (task.isSuccessful()){
                                Toast.makeText(itemsDescriptions.this, "Added to cart List", Toast.LENGTH_SHORT).show();
                                Intent intent=new Intent(itemsDescriptions.this,cartPage.class);
+                               intent.putExtra("theimage",String.valueOf(productimg));
                                startActivity(intent);
                            }
                        }

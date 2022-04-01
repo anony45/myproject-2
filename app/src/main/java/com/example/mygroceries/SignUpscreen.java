@@ -29,7 +29,7 @@ public class SignUpscreen extends AppCompatActivity {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SignUpscreen.this,AdminDashboard.class);
+                Intent intent = new Intent(SignUpscreen.this,adminLogin.class);
                 startActivity(intent);
 
             }

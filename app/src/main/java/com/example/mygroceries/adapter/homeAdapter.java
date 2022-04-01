@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,18 +16,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.mygroceries.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.example.mygroceries.mydomains.kfruitDomain;
 import com.example.mygroceries.storeOne;
 import com.example.mygroceries.mydomains.homeDomain;
 
-public class homeAdapter extends RecyclerView.Adapter<homeAdapter.homeViewHolder>{
+public class homeAdapter extends RecyclerView.Adapter<homeAdapter.homeViewHolder> {
 	Context context;
 	List<homeDomain> list;
+
 
 	public homeAdapter(Context context, List<homeDomain> list) {
 		this.context = context;
 		this.list = list;
+
 	}
 
 	@NonNull
@@ -54,10 +60,15 @@ public class homeAdapter extends RecyclerView.Adapter<homeAdapter.homeViewHolder
 	public int getItemCount() {
 		return list.size();
 	}
+	public void filterlist(ArrayList<homeDomain> filteredlist){
+		list=filteredlist;
+		notifyDataSetChanged();
+	}
+
 
 	public final class homeViewHolder extends RecyclerView.ViewHolder{
-		ImageView image;
-		TextView name;
+		public ImageView image;
+		public TextView name;
 		public homeViewHolder(@NonNull View itemView) {
 			super(itemView);
 

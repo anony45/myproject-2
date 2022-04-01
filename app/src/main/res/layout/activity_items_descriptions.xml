@@ -108,7 +108,6 @@
         android:layout_marginStart="88dp"
         android:layout_marginEnd="88dp"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/edit_textbg"
         android:ems="10"
         android:text="description of item"
         android:textAlignment="center"

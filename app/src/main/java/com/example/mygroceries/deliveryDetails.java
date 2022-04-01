@@ -64,22 +64,29 @@ public class deliveryDetails extends AppCompatActivity {
 
     }
     private void ConfirmOrder(){
-        final String saveCurrentTime,saveCurrentDate;
+        final String saveCurrentTime,saveCurrentDate,itemRandomKey;
+        String nam=name.getText().toString();
+        String phon=phone.getText().toString();
+        String addres=price.getText().toString();
+        String total=price.getText().toString();
         Calendar calForDate = Calendar.getInstance();
-        SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd. yyy");
+        SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyy");
         saveCurrentDate = currentDate.format(calForDate.getTime());
         SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
         saveCurrentTime = currentDate.format(calForDate.getTime());
-        final DatabaseReference ordersRef= FirebaseDatabase.getInstance().getReference()
-                .child("Orders").child(Prevalent.currentOnlineUser.getPhone());
+        itemRandomKey = saveCurrentDate + saveCurrentTime;
+        //working with the db
+
+        final DatabaseReference ordersRef= FirebaseDatabase.getInstance().getReference("Final Order");
         HashMap<String, Object> ordersMap = new HashMap<>();
-        ordersMap.put("totalAmount",price);
-        ordersMap.put("name",name.getText().toString());
-        ordersMap.put("phone",phone.getText().toString());
-        ordersMap.put("address",address.getText().toString());
+        ordersMap.put("totalAmount",total);
+        ordersMap.put("name",nam);
+        ordersMap.put("phone",phon);
+        ordersMap.put("address",addres);
         ordersMap.put("date",saveCurrentDate);
         ordersMap.put("time",saveCurrentTime);
-        ordersRef.updateChildren(ordersMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+        ordersMap.put("id",itemRandomKey);
+        ordersRef.child(phon).updateChildren(ordersMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){

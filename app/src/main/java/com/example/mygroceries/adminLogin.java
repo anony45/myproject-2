@@ -13,6 +13,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,6 +28,7 @@ public class adminLogin extends AppCompatActivity {
     private EditText adminEmail,adminPassword;
     private Button loginbtn;
     private ProgressDialog loadingbar;
+    FirebaseAuth auth;
     private String parentdbname;
 
     @Override
@@ -35,6 +40,8 @@ public class adminLogin extends AppCompatActivity {
         adminEmail=findViewById(R.id.adminEmail);
         adminPassword=findViewById(R.id.adminPassword);
         loginbtn=findViewById(R.id.loginbtn);
+        auth=FirebaseAuth.getInstance();
+        loadingbar=new ProgressDialog(adminLogin.this);
 
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,45 +74,24 @@ public class adminLogin extends AppCompatActivity {
             loadingbar.setMessage("please wait as we check your credentials");
             loadingbar.setCanceledOnTouchOutside(false);
             loadingbar.show();
+            auth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()){
+                        Toast.makeText(adminLogin.this, "Login successfull", Toast.LENGTH_SHORT).show();
+                        loadingbar.dismiss();
+                        Intent intent=new Intent(adminLogin.this,AdminDashboard.class);
+                       // intent.putExtra("email",String.valueOf(adminEmail));
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
 
-            AllowAccesstoAccount(email,password);
-
-        }
-
-    }
-    private void AllowAccesstoAccount(final String email,final String password){
-        final DatabaseReference db;
-        db= FirebaseDatabase.getInstance().getReference();
-        db.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.child(parentdbname).child(email).exists()){
-                    StoreUserClass userClass =snapshot.child(parentdbname).child(email).getValue(StoreUserClass.class);
-                    if (userClass.getEmail().equals(email)){
-                        if (userClass.getPassword().equals(password)){
-                            if (parentdbname.equals("Admins")){
-                                Toast.makeText(adminLogin.this, "You have successfully been logged in", Toast.LENGTH_SHORT).show();
-                                loadingbar.dismiss();
-                                Intent intent =new Intent(adminLogin.this,addStore.class);
-                                startActivity(intent);
-                            }
-                        }
-                        else {
-                            loadingbar.dismiss();
-                            Toast.makeText(adminLogin.this, "password incorrect", Toast.LENGTH_SHORT).show();
-                        }
                     }
+                    if (!task.isSuccessful()){
+                        Toast.makeText(adminLogin.this, "An error ocurred "+task.getException().toString(), Toast.LENGTH_SHORT).show();
 
+                    }
                 }
-                Toast.makeText(adminLogin.this, "account "+email+"does not exist", Toast.LENGTH_SHORT).show();
-                loadingbar.dismiss();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
+            });
+        }
     }
 }

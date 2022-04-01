@@ -31,8 +31,8 @@ import java.util.Calendar;
 import java.util.HashMap;
 
 public class addItems extends AppCompatActivity {
-    private EditText name,description,price;
-    private String Description,saveCurrentDate,saveCurrentTime,itemName,Price;
+    private EditText name,description,price,category;
+    private String Description,saveCurrentDate,saveCurrentTime,itemName,Price,categry;
     private ImageView selectItemImage;
     private Button submit;
     private static final int galleryPic =1 ;
@@ -55,6 +55,8 @@ public class addItems extends AppCompatActivity {
         name=findViewById(R.id.edit_name);
         price=findViewById(R.id.edit_price);
         description=findViewById(R.id.edit_description);
+        category=findViewById(R.id.addcate);
+
         loadingBar=new ProgressDialog(this);
 
         submit.setOnClickListener(new View.OnClickListener() {
@@ -92,6 +94,7 @@ public class addItems extends AppCompatActivity {
         Description=description.getText().toString();
         itemName=name.getText().toString();
         Price=price.getText().toString();
+        categry=category.getText().toString();
 
 
         if (uri==null){
@@ -102,6 +105,9 @@ public class addItems extends AppCompatActivity {
         }
         else if (TextUtils.isEmpty(Price)){
             Toast.makeText(this, "please write price of item", Toast.LENGTH_SHORT).show();
+        }
+        else if (TextUtils.isEmpty(itemName)){
+            Toast.makeText(this, "please write the item name", Toast.LENGTH_SHORT).show();
         }
         else if (TextUtils.isEmpty(itemName)){
             Toast.makeText(this, "please write the item name", Toast.LENGTH_SHORT).show();
@@ -172,12 +178,13 @@ public class addItems extends AppCompatActivity {
         itemmap.put("image",downloadImageUrl);
         itemmap.put("name",itemName);
         itemmap.put("price",Price);
+        itemmap.put("category",categry);
 
-        itemRef.child(itemRandomKey).updateChildren(itemmap).addOnCompleteListener(new OnCompleteListener<Void>() {
+        itemRef.child(itemName).updateChildren(itemmap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){
-                    Intent intent = new Intent(addItems.this,vendorLogin.class);
+                    Intent intent = new Intent(addItems.this,AdminDashboard.class);
                     startActivity(intent);
                     loadingBar.dismiss();
                     Toast.makeText(addItems.this, "product is added successfully", Toast.LENGTH_SHORT).show();

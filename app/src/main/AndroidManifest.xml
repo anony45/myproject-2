@@ -13,13 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyGroceries">
         <activity
+            android:name=".AboutStore"
+            android:exported="false" />
+        <activity
             android:name=".StoreTwo"
             android:exported="false" />
         <activity
             android:name=".AdminCategories"
-            android:exported="false" />
-        <activity
-            android:name=".trial"
             android:exported="false" />
         <activity
             android:name=".Home"
@@ -73,19 +73,10 @@
             android:name=".vendorLogin"
             android:exported="false" />
         <activity
-            android:name=".fruitsView"
-            android:exported="false" />
-        <activity
             android:name=".storeOne"
             android:exported="false" />
         <activity
             android:name=".cartPage"
-            android:exported="false" />
-        <activity
-            android:name=".viewHolder_cart"
-            android:exported="false" />
-        <activity
-            android:name=".HomePage"
             android:exported="false" />
         <activity
             android:name=".SignUpscreen"

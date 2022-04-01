@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,18 +17,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.mygroceries.R;
 import com.example.mygroceries.itemsDescriptions;
+import com.example.mygroceries.mydomains.homeDomain;
 import com.example.mygroceries.mydomains.kfruitDomain;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class KfruitsAdapter extends RecyclerView.Adapter<KfruitsAdapter.kfruitViewHolder> {
+public class KfruitsAdapter extends RecyclerView.Adapter<KfruitsAdapter.kfruitViewHolder> implements Filterable {
     Context context;
-
     List<kfruitDomain>kfruitDomainList;
+    List<kfruitDomain> filtered;
 
     public KfruitsAdapter(Context context, List<kfruitDomain> kfruitDomainList) {
         this.context = context;
         this.kfruitDomainList = kfruitDomainList;
+        this.filtered = filtered;
     }
 
     @NonNull
@@ -43,6 +48,7 @@ public class KfruitsAdapter extends RecyclerView.Adapter<KfruitsAdapter.kfruitVi
         holder.description.setText(kfruitDomainList.get(position).getDescription());
         holder.price.setText(kfruitDomainList.get(position).getPrice());
         Glide.with(context).load(kfruitDomainList.get(position).getImage()).error(R.drawable.noimage).into(holder.image);
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,6 +66,44 @@ public class KfruitsAdapter extends RecyclerView.Adapter<KfruitsAdapter.kfruitVi
     @Override
     public int getItemCount() {
         return kfruitDomainList.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return myfilter;
+    }
+    private final Filter myfilter =new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            ArrayList<kfruitDomain> llist=new ArrayList<>();
+            if (constraint==null||constraint.length()==0){
+                llist.addAll(filtered);
+            }
+            else {
+                String filterpattern=constraint.toString().toLowerCase().trim();
+                for (kfruitDomain domain: filtered){
+                    if (domain.name.toLowerCase().contains(filterpattern)){
+                        llist.add(domain);
+                    }
+                }
+            }
+            FilterResults results=new FilterResults();
+            results.values=llist;
+            results.count=llist.size();
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            kfruitDomainList.clear();
+            kfruitDomainList.addAll((ArrayList)results.values);
+            notifyDataSetChanged();
+
+        }
+    };
+    public void filterlist(ArrayList<kfruitDomain> filteredlist){
+        kfruitDomainList=filteredlist;
+        notifyDataSetChanged();
     }
 
 

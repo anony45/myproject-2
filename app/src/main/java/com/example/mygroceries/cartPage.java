@@ -29,6 +29,8 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -47,7 +49,7 @@ public class cartPage extends Nav_base {
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     List<cart> mylist;
-    DatabaseReference db;
+    DatabaseReference db,reference;
     Button proceed;
     TextView total_amount,message,ffinal,total,fee;
     int overalprice=0;
@@ -56,13 +58,16 @@ public class cartPage extends Nav_base {
     Button submitorder;
     ImageView productimg;
     TextView descriptionofitem,priceofitem,nameofitem;
-    String productid="",mytotal;
+    String productid="",mytotal,userId;
+    FirebaseUser user;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         pageBinding=ActivityCartPageBinding.inflate(getLayoutInflater());
         setContentView(pageBinding.getRoot());
-        allocatetitle("Your Cart");
+        allocatetitle("Your Grocery Cart");
 
         //declare the contents
         fee=findViewById(R.id.myfee);
@@ -73,39 +78,38 @@ public class cartPage extends Nav_base {
         layoutManager=new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         proceed=findViewById(R.id.submitbtn);
-
+        debate();
         //get image
         String img=getIntent().getStringExtra("image");
-
         proceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(cartPage.this, "Order placed successfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(cartPage.this, "Please Enter Your Shipping details", Toast.LENGTH_SHORT).show();
                 Intent intent= new Intent(cartPage.this,deliveryDetails.class);
-                intent.putExtra("Total price",String.valueOf(total));
-
+                intent.putExtra("Total price",String.valueOf(myttl));
                 startActivity(intent);
                 finish();
             }
         });
-        debate();
+        user= FirebaseAuth.getInstance().getCurrentUser();
+        userId=user.getUid();
+
     }
     public void debate(){
-        final DatabaseReference reference=FirebaseDatabase.getInstance().getReference("Cart List").child("User View");
+        DatabaseReference reference=FirebaseDatabase.getInstance().getReference("Cart List").child("User View");
         FirebaseRecyclerOptions<cart>options =new FirebaseRecyclerOptions.Builder<cart>().setQuery(reference,cart.class).build();
-
         FirebaseRecyclerAdapter<cart,cartAdapter> adapter= new FirebaseRecyclerAdapter<cart, cartAdapter>(options) {
             @Override
             protected void onBindViewHolder(@NonNull cartAdapter holder, int position, @NonNull cart model) {
                 holder.name.setText(model.getName());
                 holder.total_pricee.setText(model.getPrice());
                 holder.quantity.setText(model.getQuantity());
+                Glide.with(holder.image.getContext()).load(model.getImage()).error(R.drawable.noimage).into(holder.image);
                 //calculating the total
                 try{
-
                     int totalAmount= (Integer.valueOf(model.getPrice()))*(Integer.valueOf(model.getQuantity()));
                     overalprice=overalprice+totalAmount;
-                    myttl=overalprice+100;
+                    myttl=overalprice+70;
                     ffinal.setText("Total price = Ksh."+String.valueOf(overalprice));
                     total.setText("sub total= Ksh."+String.valueOf(myttl));
 
@@ -131,7 +135,7 @@ public class cartPage extends Nav_base {
                                     startActivity(intent);
                                 }
                                 if (which==1){
-                                    reference.child("user view").child("products").child(model.getName()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    reference.child("user view").child(model.getName()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if(task.isSuccessful()){
@@ -149,8 +153,6 @@ public class cartPage extends Nav_base {
                 });
 
             }
-
-
             @NonNull
             @Override
             public cartAdapter onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -162,12 +164,5 @@ public class cartPage extends Nav_base {
         recyclerView.setAdapter(adapter);
         adapter.startListening();
     }
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-
-    }
-
 
 }

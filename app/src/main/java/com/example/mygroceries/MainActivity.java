@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent=new Intent(MainActivity.this,SignUpscreen.class);
+                Intent intent=new Intent(MainActivity.this,adminLogin.class);
                 startActivity(intent);
                 finish();
             }

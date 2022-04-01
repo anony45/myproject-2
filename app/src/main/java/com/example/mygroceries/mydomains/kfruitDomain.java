@@ -3,10 +3,10 @@ package com.example.mygroceries.mydomains;
 import java.io.Serializable;
 
 public class kfruitDomain implements Serializable {
-    private String  name;
-    private String description;
-    private String  price;
-    private String image;
+    public String  name;
+    public String description;
+    public String  price;
+    public String image;
 
 public kfruitDomain(){}
 

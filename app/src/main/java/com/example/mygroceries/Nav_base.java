@@ -58,6 +58,7 @@ public class Nav_base extends AppCompatActivity implements NavigationView.OnNavi
                 startActivity(new Intent(this,settings.class));
                 break;
             case  R.id.nav_logout:
+                startActivity(new Intent(this,MainActivity.class));
                 break;
 
         }
